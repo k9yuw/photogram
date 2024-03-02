@@ -8,8 +8,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 @RequiredArgsConstructor // final 걸려있는 모든 변수에 생성자 만들어줘서 DI
 @Controller // 1. IoC 2. 파일을 리턴하는 컨트롤러
@@ -31,10 +38,16 @@ public class AuthController {
 
     // 회원가입 버튼을 눌러서 post 요청이 오면 /auth/signin 으로 감
     @PostMapping("/auth/signup")
-    public String signup(SignupDto signupDto) {
-        if(signupDto.getUsername().length()>20){ // validation을 확인하는 전처리 과정
-            
+    public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) { // 들어올 때 @Valid 를 걸어서 validation check를 한다는 것! (전처리 과정)
+
+        if(bindingResult.hasErrors()) {
+            Map<String, String> errorMap = new HashMap<>();
+
+            for(FieldError error: bindingResult.getFieldErrors()) {
+                errorMap.put(error.getField(), error.getDefaultMessage());
+            }
         }
+
         User user = signupDto.toEntity();
         User userEntity = authService.회원가입(user);
         return "auth/signin";

@@ -22,11 +22,13 @@ public class User {
 
     @Column(length = 20, unique = true) // id 중복방지
     private String username;
+    @Column(nullable = false)
     private String password;
-
+    @Column(nullable = false)
     private String name;
     private String website;
     private String bio;
+    @Column(nullable = false)
     private String email;
     private String phone;
     private String gender;
