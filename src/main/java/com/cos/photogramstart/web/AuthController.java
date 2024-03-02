@@ -32,6 +32,9 @@ public class AuthController {
     // 회원가입 버튼을 눌러서 post 요청이 오면 /auth/signin 으로 감
     @PostMapping("/auth/signup")
     public String signup(SignupDto signupDto) {
+        if(signupDto.getUsername().length()>20){ // validation을 확인하는 전처리 과정
+            
+        }
         User user = signupDto.toEntity();
         User userEntity = authService.회원가입(user);
         return "auth/signin";

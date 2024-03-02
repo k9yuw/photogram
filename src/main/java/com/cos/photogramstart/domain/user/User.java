@@ -20,7 +20,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 증가 전략이 DB를 따라감 - MYSQL 같은 경우 autoincrement
     private int id;
 
-    @Column(unique = true) // id 중복방지
+    @Column(length = 20, unique = true) // id 중복방지
     private String username;
     private String password;
 
