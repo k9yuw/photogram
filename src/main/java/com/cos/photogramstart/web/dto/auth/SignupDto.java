@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Data // Getter Setter 만들어주는 어노테이션
 public class SignupDto {
 
-    @Max(20)
+//    @Max(20)
     @NotBlank
     private String username;
     @NotBlank

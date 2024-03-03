@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .and()
                 .formLogin()
                 .loginPage("/auth/signin") // 사용자가 인증이 필요한 URL로 요청하면(GET 방식) /auth/signin으로 리다이렉트.
+                .loginProcessingUrl("/auth/signin") // POST(로그인)로 요청시 리다이렉트
                 .defaultSuccessUrl("/"); // 1-9. 1-8이 정상적으로 처리가 되었으면 /로 이동.
 
         return http.build();
