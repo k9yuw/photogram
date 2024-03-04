@@ -1,5 +1,6 @@
 package com.cos.photogramstart.handler;
 
+import com.cos.photogramstart.handler.Exception.CustomApiException;
 import com.cos.photogramstart.handler.Exception.CustomValidationApiException;
 import com.cos.photogramstart.handler.Exception.CustomValidationException;
 import com.cos.photogramstart.util.Script;
@@ -29,8 +30,12 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(CustomValidationApiException.class)
     // 데이터로 통신하는 것 - Ajax, Android 통신 시 이용
     public ResponseEntity<?> validationApiException(CustomValidationApiException e){
-        System.out.println("============================am i running????=================");
         return new ResponseEntity<>(new CMRespDto<>(-1,e.getMessage(),e.getErrorMap()),HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomApiException.class)
+    public ResponseEntity<?> apiException(CustomApiException e){
+        return new ResponseEntity<>(new CMRespDto<>(-1,e.getMessage(),null),HttpStatus.BAD_REQUEST);
     }
 
 }
