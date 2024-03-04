@@ -29,6 +29,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(CustomValidationApiException.class)
     // 데이터로 통신하는 것 - Ajax, Android 통신 시 이용
     public ResponseEntity<?> validationApiException(CustomValidationApiException e){
+        System.out.println("============================am i running????=================");
         return new ResponseEntity<>(new CMRespDto<>(-1,e.getMessage(),e.getErrorMap()),HttpStatus.BAD_REQUEST);
     }
 
