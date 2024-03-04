@@ -1,6 +1,6 @@
 // (1) 회원정보 수정
 function update(userId, event) {
-
+    event.preventDefault(); // 폼태그 액션을 막아서 더 이상 진행되지 않게 함
     let data = $("#profileUpdate").serialize();
     console.log(data);
 
