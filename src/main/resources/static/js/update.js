@@ -4,16 +4,17 @@ function update(userId, event) {
     let data = $("#profileUpdate").serialize();
     console.log(data);
 
-    $.ajax({
+    $.ajax({ // ajax 통신 시 Http 상태 코드를 같이 던져주는 것이 좋다.그래서 ControllerExceptionHandler에서 Http.BAD_REQUEST 함께 반환
         type:"put",
         url:`/api/user/${userId}`,
         data: data,
         contentType:"application/x-www-form-urlencoded; charset=utf-8",
         dataType: "json"
-    }).done(res=>{
-        console.log("update 성공");
+    }).done(res=>{ // HttpStatus 상태코드 200번대
+        console.log("update 성공",res);
         location.href=`/user/${userId}`;
-    }).fail(error=>{
-        console.log("update 실패");
+    }).fail(error=>{ // HttpStatus 상태코드 200번대 아닐 때
+        alert(JSON.stringify(error.responseJSON.data));
+        console.log("update 실패",error);
     });
 }
