@@ -25,7 +25,7 @@ public class SecurityConfig {
         http.csrf().disable();
 
         http.authorizeRequests()
-                .antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**").authenticated() // 해당 URL로 매핑되는건 인증이 필요하고
+                .antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**", "/api/**").authenticated() // 해당 URL로 매핑되는건 인증이 필요하고
                 .anyRequest().permitAll() // 그외의 모든 요청은 허용하겠다.
                 .and()
                 .formLogin()
