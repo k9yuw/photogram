@@ -38,7 +38,7 @@ public class AuthController {
         return "auth/signup";
     }
 
-    // 회원가입 버튼을 눌러서 post 요청이 오면 /auth/signin 으로 감
+    // 회원가입 버튼을 눌러서 post 요청이 오면 /auth/signup 으로 감
     @PostMapping("/auth/signup")
     public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) { // 들어올 때 @Valid 를 걸어서 validation check를 한다는 것! (전처리 과정)
 
