@@ -1,6 +1,7 @@
 package com.cos.photogramstart.web;
 
 import com.cos.photogramstart.config.auth.PrincipalDetails;
+import com.cos.photogramstart.domain.user.User;
 import com.cos.photogramstart.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -19,9 +20,9 @@ public class UserController {
 
     @GetMapping("/user/{id}")
     public String profile(@PathVariable int id, Model model) {
-        // user page로 그냥 가면 안되고, 이미지 데이터를 들고 가야됨.
-        userService.회원프로필(id);
-        model.addAttribute("images",null);
+        // user page로 그냥 가면 안되고, 이미지 / 게시글 / 구독 정보 등등의 데이터를 들고 가야됨.
+        User userEntity = userService.회원프로필(id);
+        model.addAttribute("user",userEntity);
         return "user/profile";
     }
 
