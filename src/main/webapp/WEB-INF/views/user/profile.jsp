@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -66,19 +66,16 @@
 
 				<!--아이템들-->
 
-				<c:forEach var="image" items="${user.images}"> <!-- EL표현식에서 변수명을 적으면 get함수가 자동 호출된다. -->
-					<!-- Loop started -->
+				<c:forEach var="image" items="${dto.user.images}"> <!-- EL표현식에서 변수명을 적으면 get함수가 자동 호출된다. -->
 					<div class="img-box">
 						<a href=""> <img src="/upload/${image.postImageUrl}" />
 						</a>
 						<div class="comment">
-							<a href="#" class=""> <i class="fas fa-heart"></i><span>${image.likeCount}</span>
+							<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
 							</a>
 						</div>
 					</div>
-					<!-- Loop ended -->
 				</c:forEach>
-
 
 				<!--아이템들end-->
 			</div>
